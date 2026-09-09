@@ -6,6 +6,7 @@ import { setCity, setSearch } from '../../store/jobs/jobsSlice';
 import { SkillsInput } from '../SkillsInput/SkillsInput';
 import classes from './JobFilters.module.scss';
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
+import {IconMapPin} from "@tabler/icons-react";
 
 export function JobFilters() {
     const dispatch = useAppDispatch();
@@ -29,8 +30,6 @@ export function JobFilters() {
         })),
     ];
 
-
-
     return (
         <Stack gap="md" className={classes.filters}>
             <Stack
@@ -38,19 +37,22 @@ export function JobFilters() {
                    p="md"
                    style={{ borderRadius: 8 }}
             >
+                <SkillsInput />
+            </Stack>
+            <Stack
+                bg="white"
+                p="md"
+                style={{ borderRadius: 8 }}
+            >
                 <Select
-                    label="Город"
+                    leftSection={<IconMapPin size={16} />}
+                    placeholder="Все города"
                     data={cityOptions}
                     value={city || 'all'}
                     onChange={(value) => dispatch(setCity(value === 'all' ? '' : value ?? ''))}
                     allowDeselect={false}
                 />
-
-                <SkillsInput />
             </Stack>
-
-
-
         </Stack>
     );
 }
