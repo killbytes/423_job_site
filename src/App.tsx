@@ -1,7 +1,7 @@
 import {Container, Grid, Stack, Title, Divider, Group, Text, Autocomplete, Button} from '@mantine/core';
-import { Header } from './components/Header/Header';
-import { JobFilters } from './components/JobFilters/JobFilters';
-import { JobsList } from './components/JobsList/JobsList';
+import {Header} from './components/Header/Header';
+import {JobFilters} from './components/JobFilters/JobFilters';
+import {JobsList} from './components/JobsList/JobsList';
 import classes from './App.module.scss';
 import {useMemo, useState} from "react";
 import {useDebouncedValue} from "@mantine/hooks";
@@ -17,7 +17,7 @@ function App() {
     const [searchValue, setSearchValue] = useState(search);
     const [debouncedSearch] = useDebouncedValue(searchValue, 400);
     const filters = useAppSelector(selectJobsFilters);
-    const { data } = useGetJobsQuery(filters);
+    const {data} = useGetJobsQuery(filters);
 
     const handleSearch = () => {
         dispatch(setSearch(searchValue.trim()));
@@ -40,7 +40,7 @@ function App() {
 
     return (
         <>
-            <Header />
+            <Header/>
 
             <main>
                 <Container size="md" className={classes.container}>
@@ -48,8 +48,9 @@ function App() {
                         <Stack gap="md">
                             <div className={classes.wrapper}>
                                 <Group justify="space-between">
-                                    <Group gap="sm" wrap='wrap' align="start" className={classes.wraptitle} style={{flexDirection:'column'}}>
-                                        <Title order={2} fw={700}  className={classes.title}>
+                                    <Group gap="sm" wrap='wrap' align="start" className={classes.wraptitle}
+                                           style={{flexDirection: 'column'}}>
+                                        <Title order={2} fw={700} className={classes.title}>
                                             Список вакансий
                                         </Title>
                                         <Text c="#0F0F1080">
@@ -59,7 +60,7 @@ function App() {
                                     <Group align="flex-start" gap="8">
                                         <Autocomplete
                                             placeholder="Должность или название компании"
-                                            leftSection={<IconSearch size={16} />}
+                                            leftSection={<IconSearch size={16}/>}
                                             data={suggestions}
                                             value={searchValue}
                                             onChange={setSearchValue}
@@ -73,14 +74,14 @@ function App() {
                                 </Group>
                             </div>
                         </Stack>
-                        <Divider style={{marginLeft: 'calc(50% - 49vw)', marginRight: 'calc(50% - 49vw)'}} />
+                        <Divider style={{marginLeft: 'calc(50% - 49vw)', marginRight: 'calc(50% - 49vw)'}}/>
                         <Grid>
                             <Grid.Col span={4}>
-                                <JobFilters />
+                                <JobFilters/>
                             </Grid.Col>
 
                             <Grid.Col span={8}>
-                                <JobsList />
+                                <JobsList/>
                             </Grid.Col>
                         </Grid>
                     </Stack>

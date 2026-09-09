@@ -1,5 +1,5 @@
-import { Badge, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
-import type { Job } from '../../shared/types';
+import {Badge, Button, Group, Paper, Stack, Text, Title} from '@mantine/core';
+import type {Job} from '../../shared/types';
 import classes from './JobCard.module.scss';
 
 const spaceLabels = {
@@ -12,7 +12,7 @@ interface JobCardProps {
     job: Job;
 }
 
-export function JobCard({ job }: JobCardProps) {
+export function JobCard({job}: JobCardProps) {
     return (
         <Paper withBorder radius="md" p="lg" className={classes.card}>
             <Stack gap="xs">

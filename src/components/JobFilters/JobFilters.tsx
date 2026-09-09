@@ -1,9 +1,9 @@
-import { Select, Stack, TextInput } from '@mantine/core';
-import { useMemo, useState} from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {selectCity, selectJobsFilters, selectSearch} from '../../store/jobs/jobsSelectors';
-import { setCity, setSearch } from '../../store/jobs/jobsSlice';
-import { SkillsInput } from '../SkillsInput/SkillsInput';
+import {Select, Stack} from '@mantine/core';
+import {useMemo} from 'react';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {selectCity, selectJobsFilters} from '../../store/jobs/jobsSelectors';
+import {setCity} from '../../store/jobs/jobsSlice';
+import {SkillsInput} from '../SkillsInput/SkillsInput';
 import classes from './JobFilters.module.scss';
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 import {IconMapPin} from "@tabler/icons-react";
@@ -11,7 +11,7 @@ import {IconMapPin} from "@tabler/icons-react";
 export function JobFilters() {
     const dispatch = useAppDispatch();
     const filters = useAppSelector(selectJobsFilters);
-    const { data } = useGetJobsQuery(filters);
+    const {data} = useGetJobsQuery(filters);
     const city = useAppSelector(selectCity);
 
     const cities = useMemo(() => {
@@ -23,7 +23,7 @@ export function JobFilters() {
     }, [data?.jobs]);
 
     const cityOptions = [
-        { value: '', label: 'Все города' },
+        {value: '', label: 'Все города'},
         ...cities.map((city) => ({
             value: city,
             label: city,
@@ -33,19 +33,19 @@ export function JobFilters() {
     return (
         <Stack gap="md" className={classes.filters}>
             <Stack
-                   bg="white"
-                   p="md"
-                   style={{ borderRadius: 8 }}
+                bg="white"
+                p="md"
+                style={{borderRadius: 8}}
             >
-                <SkillsInput />
+                <SkillsInput/>
             </Stack>
             <Stack
                 bg="white"
                 p="md"
-                style={{ borderRadius: 8 }}
+                style={{borderRadius: 8}}
             >
                 <Select
-                    leftSection={<IconMapPin size={16} />}
+                    leftSection={<IconMapPin size={16}/>}
                     placeholder="Все города"
                     data={cityOptions}
                     value={city || 'all'}

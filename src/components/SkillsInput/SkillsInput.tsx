@@ -1,9 +1,8 @@
-import {ActionIcon, Button, Group, Pill, PillsInput, Stack, Text, TextInput} from '@mantine/core';
-import { useState, type KeyboardEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addSkill, removeSkill } from '../../store/jobs/jobsSlice';
-import { selectSkills } from '../../store/jobs/jobsSelectors';
-import classes from './SkillsInput.module.scss';
+import {ActionIcon, Group, Pill, Stack, Text, TextInput} from '@mantine/core';
+import {useState, type KeyboardEvent} from 'react';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {addSkill, removeSkill} from '../../store/jobs/jobsSlice';
+import {selectSkills} from '../../store/jobs/jobsSelectors';
 
 export function SkillsInput() {
     const dispatch = useAppDispatch();
@@ -27,72 +26,42 @@ export function SkillsInput() {
 
     return (
 
-        // <Stack>
-        //     <Text fw={600}>Ключевые навыки</Text>
-        //
-        //     <Group gap={8}>
-        //         <PillsInput.Field placeholder="Навык" />
-        //         <Button size="sm" variant="filled" style={{ borderRadius: 4 }}>
-        //             +
-        //         </Button>
-        //
-        //         <Pill.Group>
-        //             <Pill>JavaScript</Pill>
-        //             <Pill>React</Pill>
-        //             <Pill>Redux</Pill>
-        //             <Pill>Redux Toolkit</Pill>
-        //             <Pill>Next.js</Pill>
-        //         </Pill.Group>
-        //
-        //     </Group>
-        // </Stack>
-
-
-
-
-    <Stack gap={8}>
-
+        <Stack gap={8}>
             <Text size="sm" fw={600} ta={"left"}>
                 Ключевые навыки
             </Text>
+            <Group gap={6} wrap="nowrap">
+                <TextInput
+                    placeholder="Навык"
+                    value={value}
+                    onChange={(event) => setValue(event.currentTarget.value)}
+                    onKeyDown={handleKeyDown}
+                    size="xs"
+                    style={{width: '100%'}}
+                />
 
-                {/*<PillsInput.Field placeholder="Навык" />*/}
-                <Group gap={6} wrap="nowrap">
-                    <TextInput
-                        placeholder="Навык"
-                        value={value}
-                        onChange={(event) => setValue(event.currentTarget.value)}
-                        onKeyDown={handleKeyDown}
-                        size="xs"
-                        style={{ width: '100%' }}
-                    />
-
-                    <ActionIcon
-                        className={classes.plus}
-                        type="button"
-                        variant="light"
-                        size="md"
-                        radius="sm"
-                        aria-label="Добавить навык"
-                        onClick={handleAdd}
+                <ActionIcon
+                    type="button"
+                    variant="light"
+                    size="md"
+                    radius="sm"
+                    aria-label="Добавить навык"
+                    onClick={handleAdd}
+                >
+                    +
+                </ActionIcon>
+            </Group>
+            <Group gap={6} wrap="wrap">
+                {skills.map((skill) => (
+                    <Pill
+                        key={skill}
+                        withRemoveButton
+                        onRemove={() => dispatch(removeSkill(skill))}
                     >
-                        +
-                    </ActionIcon>
-                </Group>
-
-
-                <Group gap={6} wrap="wrap">
-                    {skills.map((skill) => (
-                        <Pill
-                            key={skill}
-                            withRemoveButton
-                            onRemove={() => dispatch(removeSkill(skill))}
-                        >
-                            {skill}
-                        </Pill>
-                    ))}
-
-                </Group>
+                        {skill}
+                    </Pill>
+                ))}
+            </Group>
         </Stack>
     );
 }

@@ -1,5 +1,5 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { JobsFiltersState } from '../../shared/types';
+import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
+import type {JobsFiltersState} from '../../shared/types';
 
 const initialState: JobsFiltersState = {
     search: '',
@@ -39,5 +39,5 @@ const jobsSlice = createSlice({
     },
 });
 
-export const { setSearch, setCity, addSkill, removeSkill, setPage } = jobsSlice.actions;
+export const {setSearch, setCity, addSkill, removeSkill, setPage} = jobsSlice.actions;
 export default jobsSlice.reducer;

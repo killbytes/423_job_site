@@ -9,7 +9,7 @@ export function Header() {
             <Container size="lg" className={classes.inner}>
                 <Group justify="space-between" style={{width: '100%'}}>
                     <Text className={classes.logo} fw={600}>
-                        <img src={Logo} alt="Logo" className={classes.logoimg} />
+                        <img src={Logo} alt="Logo" className={classes.logoimg}/>
                         .FrontEnd
                     </Text>
                     <Group justify="space-between">
@@ -20,11 +20,11 @@ export function Header() {
                                 color="blue"
                                 offset={2}
                                 position="top-end"
-                                style={{paddingRight:"16px", paddingBottom:"4px"}}
+                                style={{paddingRight: "16px", paddingBottom: "4px"}}
                             />
                         </Anchor>
                         <Anchor href="#" c="#0F0F1080" underline="never" className={classes.about}>
-                            <img src={User} alt="Logo" className={classes.logoimg} />
+                            <img src={User} alt="Logo" className={classes.logoimg}/>
                             Обо мне
                         </Anchor>
                     </Group>
