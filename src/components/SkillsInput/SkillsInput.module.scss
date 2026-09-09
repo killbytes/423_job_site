@@ -1,0 +1,16 @@
+.box {
+  min-height: 42px;
+  padding: 6px 8px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.box:focus-within {
+  border-color: #4263eb;
+}
+
+.input {
+  flex: 1 1 140px;
+  min-width: 120px;
+}

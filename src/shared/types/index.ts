@@ -1,2 +1,2 @@
-export type { Product } from "./Product";
-export type { CartItem } from "./CartItem";
+export type {Job, JobSpace, JobsFiltersState, JobsQueryParams} from './jobs.types';
+export type { JobsPagination, JobsResponse } from './api';
