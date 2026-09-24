@@ -12,15 +12,16 @@ export function JobFilters() {
     const dispatch = useAppDispatch();
     const filters = useAppSelector(selectJobsFilters);
     const {data} = useGetJobsQuery(filters);
+    const jobs = data?.jobs;
     const city = useAppSelector(selectCity);
 
     const cities = useMemo(() => {
-        if (!data?.jobs) {
+        if (!jobs) {
             return [];
         }
-        return [...new Set(data.jobs.map((job) => job.city))]
+        return [...new Set(jobs.map((job) => job.city))]
             .sort((a, b) => a.localeCompare(b, 'ru'));
-    }, [data?.jobs]);
+    }, [jobs]);
 
     const cityOptions = [
         {value: '', label: 'Все города'},

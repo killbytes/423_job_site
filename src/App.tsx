@@ -18,25 +18,26 @@ function App() {
     const [debouncedSearch] = useDebouncedValue(searchValue, 400);
     const filters = useAppSelector(selectJobsFilters);
     const {data} = useGetJobsQuery(filters);
+    const jobs = data?.jobs;
 
     const handleSearch = () => {
         dispatch(setSearch(searchValue.trim()));
     };
 
     const suggestions = useMemo(() => {
-        if (!data?.jobs || !debouncedSearch.trim()) {
+        if (!jobs || !debouncedSearch.trim()) {
             return [];
         }
 
         return [
             ...new Set(
-                data.jobs.flatMap((job) => [
+                jobs.flatMap((job) => [
                     job.name,
                     job.company_name,
                 ]),
             ),
         ];
-    }, [data?.jobs, debouncedSearch]);
+    }, [jobs, debouncedSearch]);
 
     return (
         <>
