@@ -11,8 +11,6 @@ export function JobsList() {
     const filters = useAppSelector(selectJobsFilters);
     const {data, isLoading, isError} = useGetJobsQuery(filters);
 
-    console.log(data)
-
     if (isLoading) {
         return (
             <Center className={classes.state}>
