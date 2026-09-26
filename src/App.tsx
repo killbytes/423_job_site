@@ -11,6 +11,9 @@ import {selectJobsFilters, selectSearch} from "@/store/jobs/jobsSelectors.ts";
 import {IconSearch} from "@tabler/icons-react";
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 
+import { Navigate, Route, Routes } from 'react-router';
+import { JobsPage } from './pages/JobsPage/JobsPage';
+
 function App() {
     const dispatch = useAppDispatch();
     const search = useAppSelector(selectSearch);
@@ -38,56 +41,72 @@ function App() {
         ];
     }, [data?.jobs, debouncedSearch]);
 
+    // return (
+    //     <>
+    //         <Header/>
+    //
+    //         <main>
+    //             <Container size="md" className={classes.container}>
+    //                 <Stack gap="sm">
+    //                     <Stack gap="md">
+    //                         <div className={classes.wrapper}>
+    //                             <Group justify="space-between">
+    //                                 <Group gap="sm" wrap='wrap' align="start" className={classes.wraptitle}
+    //                                        style={{flexDirection: 'column'}}>
+    //                                     <Title order={2} fw={700} className={classes.title}>
+    //                                         Список вакансий
+    //                                     </Title>
+    //                                     <Text c="#0F0F1080">
+    //                                         по профессии Frontend-разработчик
+    //                                     </Text>
+    //                                 </Group>
+    //                                 <Group align="flex-start" gap="8">
+    //                                     <Autocomplete
+    //                                         placeholder="Должность или название компании"
+    //                                         leftSection={<IconSearch size={16}/>}
+    //                                         data={suggestions}
+    //                                         value={searchValue}
+    //                                         onChange={setSearchValue}
+    //                                         onOptionSubmit={(value) => {
+    //                                             setSearchValue(value);
+    //                                             dispatch(setSearch(value.trim()));
+    //                                         }}
+    //                                     />
+    //                                     <Button type="submit" onClick={handleSearch}>Найти</Button>
+    //                                 </Group>
+    //                             </Group>
+    //                         </div>
+    //                     </Stack>
+    //                     <Divider style={{marginLeft: 'calc(50% - 49vw)', marginRight: 'calc(50% - 49vw)'}}/>
+    //                     <Grid>
+    //                         <Grid.Col span={4}>
+    //                             <JobFilters/>
+    //                         </Grid.Col>
+    //
+    //                         <Grid.Col span={8}>
+    //                             <JobsList/>
+    //                         </Grid.Col>
+    //                     </Grid>
+    //                 </Stack>
+    //             </Container>
+    //         </main>
+    //     </>
+    // );
+
     return (
-        <>
-            <Header/>
+        <Routes>
+            <Route path="/jobs" element={<JobsPage />} />
 
-            <main>
-                <Container size="md" className={classes.container}>
-                    <Stack gap="sm">
-                        <Stack gap="md">
-                            <div className={classes.wrapper}>
-                                <Group justify="space-between">
-                                    <Group gap="sm" wrap='wrap' align="start" className={classes.wraptitle}
-                                           style={{flexDirection: 'column'}}>
-                                        <Title order={2} fw={700} className={classes.title}>
-                                            Список вакансий
-                                        </Title>
-                                        <Text c="#0F0F1080">
-                                            по профессии Frontend-разработчик
-                                        </Text>
-                                    </Group>
-                                    <Group align="flex-start" gap="8">
-                                        <Autocomplete
-                                            placeholder="Должность или название компании"
-                                            leftSection={<IconSearch size={16}/>}
-                                            data={suggestions}
-                                            value={searchValue}
-                                            onChange={setSearchValue}
-                                            onOptionSubmit={(value) => {
-                                                setSearchValue(value);
-                                                dispatch(setSearch(value.trim()));
-                                            }}
-                                        />
-                                        <Button type="submit" onClick={handleSearch}>Найти</Button>
-                                    </Group>
-                                </Group>
-                            </div>
-                        </Stack>
-                        <Divider style={{marginLeft: 'calc(50% - 49vw)', marginRight: 'calc(50% - 49vw)'}}/>
-                        <Grid>
-                            <Grid.Col span={4}>
-                                <JobFilters/>
-                            </Grid.Col>
+            <Route
+                path="/"
+                element={<Navigate to="/jobs" replace />}
+            />
 
-                            <Grid.Col span={8}>
-                                <JobsList/>
-                            </Grid.Col>
-                        </Grid>
-                    </Stack>
-                </Container>
-            </main>
-        </>
+            <Route
+                path="*"
+                element={<Navigate to="/jobs" replace />}
+            />
+        </Routes>
     );
 }
 
