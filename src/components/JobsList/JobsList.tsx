@@ -8,8 +8,10 @@ import classes from './JobsList.module.scss';
 
 export function JobsList() {
     const dispatch = useAppDispatch();
-    const filters = useAppSelector(selectJobsFilters);
+    // const filters = useAppSelector(selectJobsFilters);
+    const { filters } = useJobsFilters();
     const {data, isLoading, isError} = useGetJobsQuery(filters);
+
 
     console.log(data)
 
