@@ -7,15 +7,11 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from 'react-router';
+import {BrowserRouter, Routes, Route} from 'react-router';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename="/423_job_site">
             <Provider store={store}>
                 <MantineProvider>
                     <App />

@@ -5,6 +5,7 @@ import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
 import {setPage} from '../../store/jobs/jobsSlice';
 import {JobCard} from '../JobCard/JobCard';
 import classes from './JobsList.module.scss';
+import {useJobsFilters} from "@/hooks/useJobsFilters.ts";
 
 export function JobsList() {
     const dispatch = useAppDispatch();
@@ -13,7 +14,8 @@ export function JobsList() {
     const {data, isLoading, isError} = useGetJobsQuery(filters);
 
 
-    console.log(data)
+    console.log('filters ', filters);
+    console.log('data ', data);
 
     if (isLoading) {
         return (

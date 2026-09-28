@@ -4,7 +4,7 @@ import { Header } from '../../components/Header/Header';
 import { JobFilters } from '../../components/JobFilters/JobFilters';
 import { JobsList } from '../../components/JobsList/JobsList';
 
-import classes from './JobsPage.module.css';
+import classes from './JobsPage.module.scss';
 
 export function JobsPage() {
     return (
