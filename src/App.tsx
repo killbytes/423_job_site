@@ -13,6 +13,7 @@ import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 
 import { Navigate, Route, Routes } from 'react-router';
 import { JobsPage } from './pages/JobsPage/JobsPage';
+import { VacancyPage } from './pages/VacancyPage/VacancyPage';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -95,17 +96,12 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/jobs" element={<JobsPage />} />
+            {/*<Route path="/jobs" element={<JobsPage />} />*/}
+            {/*<Route path="/" element={<Navigate to="/jobs" replace />}/>*/}
+            {/*<Route path="*" element={<Navigate to="/jobs" replace />}/>*/}
 
-            <Route
-                path="/"
-                element={<Navigate to="/jobs" replace />}
-            />
-
-            <Route
-                path="*"
-                element={<Navigate to="/jobs" replace />}
-            />
+            <Route path="/vacancies" element={<JobsPage />} />
+            <Route path="/vacancies/:id" element={<VacancyPage />} />
         </Routes>
     );
 }
