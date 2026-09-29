@@ -1,7 +1,7 @@
 import {Center, Loader, Pagination, Stack, Text} from '@mantine/core';
 import {useGetJobsQuery} from '../../store/jobs/jobsApi';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
+// import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
 import {setPage} from '../../store/jobs/jobsSlice';
 import {JobCard} from '../JobCard/JobCard';
 import classes from './JobsList.module.scss';
@@ -12,6 +12,8 @@ export function JobsList() {
     // const filters = useAppSelector(selectJobsFilters);
     const { filters } = useJobsFilters();
     const {data, isLoading, isError} = useGetJobsQuery(filters);
+
+    
 
     // console.log('filters ', filters);
     // console.log('data ', data);

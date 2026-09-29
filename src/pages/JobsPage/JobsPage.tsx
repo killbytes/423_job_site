@@ -6,7 +6,13 @@ import { JobsList } from '../../components/JobsList/JobsList';
 
 import classes from './JobsPage.module.scss';
 
+import {useJobsFilters} from "@/hooks/useJobsFilters.ts";
+
 export function JobsPage() {
+
+    const { filters } = useJobsFilters();
+    console.log(filters);
+
     return (
         <>
             <Header />
