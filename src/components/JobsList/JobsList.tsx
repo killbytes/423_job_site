@@ -13,9 +13,8 @@ export function JobsList() {
     const { filters } = useJobsFilters();
     const {data, isLoading, isError} = useGetJobsQuery(filters);
 
-
-    console.log('filters ', filters);
-    console.log('data ', data);
+    // console.log('filters ', filters);
+    // console.log('data ', data);
 
     if (isLoading) {
         return (
