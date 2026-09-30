@@ -17,8 +17,11 @@ export function JobFilters() {
     const city = useAppSelector(selectCity);
 
 
-    const {filters, setSearch, setCity, setSkills,} = useJobsFilters();
+    const {filters, setCity, setSkills,} = useJobsFilters();
     const {data} = useGetJobsQuery(filters);
+
+
+
 
     const cities = useMemo(() => {
         if (!data?.jobs) {
@@ -43,7 +46,10 @@ export function JobFilters() {
                 p="md"
                 style={{borderRadius: 8}}
             >
-                <SkillsInput/>
+                <SkillsInput
+                    skills={filters.skills}
+                    onChange={setSkills}
+                />
             </Stack>
             <Stack
                 bg="white"
@@ -51,11 +57,12 @@ export function JobFilters() {
                 style={{borderRadius: 8}}
             >
                 <Select
-                    leftSection={<IconMapPin size={16}/>}
+                    leftSection={<IconMapPin size={16} />}
                     placeholder="Все города"
+                    // data={cityOptions}
                     data={cityOptions}
-                    value={city || 'all'}
-                    onChange={(value) => dispatch(setCity(value === 'all' ? '' : value ?? ''))}
+                    value={filters.city || null}
+                    onChange={(value) => setCity(value ?? '')}
                     allowDeselect={false}
                 />
             </Stack>

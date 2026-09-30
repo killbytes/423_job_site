@@ -4,16 +4,24 @@ import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {addSkill, removeSkill} from '../../store/jobs/jobsSlice';
 import {selectSkills} from '../../store/jobs/jobsSelectors';
 
-export function SkillsInput() {
-    const dispatch = useAppDispatch();
-    const skills = useAppSelector(selectSkills);
+interface SkillsInputProps {
+    skills: string[];
+    onChange: (skills: string[]) => void;
+}
+
+export function SkillsInput({skills, onChange}: SkillsInputProps)  {
+    // const dispatch = useAppDispatch();
+    // const skills = useAppSelector(selectSkills);
     const [value, setValue] = useState('');
 
     const handleAdd = () => {
         const skill = value.trim();
         if (!skill) return;
-
-        dispatch(addSkill(skill));
+        if (skills.includes(skill)) {
+            setValue('');
+            return;
+        }
+        onChange([...skills, skill]);
         setValue('');
     };
 
@@ -22,6 +30,14 @@ export function SkillsInput() {
             event.preventDefault();
             handleAdd();
         }
+    };
+
+    const handleRemove = (skillToRemove: string) => {
+        onChange(
+            skills.filter(
+                (skill) => skill !== skillToRemove,
+            ),
+        );
     };
 
     return (
@@ -56,7 +72,7 @@ export function SkillsInput() {
                     <Pill
                         key={skill}
                         withRemoveButton
-                        onRemove={() => dispatch(removeSkill(skill))}
+                        onRemove={() => handleRemove(skill)}
                     >
                         {skill}
                     </Pill>

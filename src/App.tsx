@@ -14,33 +14,37 @@ import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 import { Navigate, Route, Routes } from 'react-router';
 import { JobsPage } from './pages/JobsPage/JobsPage';
 import { VacancyPage } from './pages/VacancyPage/VacancyPage';
+import {Layout} from "@/Layout.tsx";
 
 function App() {
-    const dispatch = useAppDispatch();
-    const search = useAppSelector(selectSearch);
-    const [searchValue, setSearchValue] = useState(search);
-    const [debouncedSearch] = useDebouncedValue(searchValue, 400);
-    const filters = useAppSelector(selectJobsFilters);
-    const {data} = useGetJobsQuery(filters);
+    // const dispatch = useAppDispatch();
+    // const search = useAppSelector(selectSearch);
+    // const [searchValue, setSearchValue] = useState(search);
 
-    const handleSearch = () => {
-        dispatch(setSearch(searchValue.trim()));
-    };
+    // const [searchValue, setSearchValue] = useState(filters.search);
 
-    const suggestions = useMemo(() => {
-        if (!data?.jobs || !debouncedSearch.trim()) {
-            return [];
-        }
+    // const [debouncedSearch] = useDebouncedValue(searchValue, 400);
+    // const filters = useAppSelector(selectJobsFilters);
+    // const {data} = useGetJobsQuery(filters);
 
-        return [
-            ...new Set(
-                data.jobs.flatMap((job) => [
-                    job.name,
-                    job.company_name,
-                ]),
-            ),
-        ];
-    }, [data?.jobs, debouncedSearch]);
+    // const handleSearch = () => {
+    //     dispatch(setSearch(searchValue.trim()));
+    // };
+
+    // const suggestions = useMemo(() => {
+    //     if (!data?.jobs || !debouncedSearch.trim()) {
+    //         return [];
+    //     }
+    //
+    //     return [
+    //         ...new Set(
+    //             data.jobs.flatMap((job) => [
+    //                 job.name,
+    //                 job.company_name,
+    //             ]),
+    //         ),
+    //     ];
+    // }, [data?.jobs, debouncedSearch]);
 
     // return (
     //     <>
@@ -95,20 +99,24 @@ function App() {
     // );
 
     return (
+        // <Routes>
+        //     <Route path="/" element={<Navigate to="/vacancies" replace />}/>
+        //     <Route path="*" element={<Navigate to="/vacancies" replace />}/>
+        //     <Route path="/vacancies" element={<JobsPage />} />
+        //     <Route path="/vacancies/:id" element={<VacancyPage />}/>
+        // </Routes>
+
         <Routes>
-            {/*<Route path="/jobs" element={<JobsPage />} />*/}
-            {/*<Route path="/" element={<Navigate to="/jobs" replace />}/>*/}
-            {/*<Route path="*" element={<Navigate to="/jobs" replace />}/>*/}
-
-            <Route path="/vacancies" element={<JobsPage />} />
-            <Route path="/vacancies/:id" element={<VacancyPage />} />
-
+            <Route element={<Layout />}>
+                <Route path="/vacancies" element={<JobsPage />} />
+                <Route path="/vacancies/:id" element={<VacancyPage />} />
+            </Route>
 
             <Route path="/" element={<Navigate to="/vacancies" replace />}/>
+
             <Route path="*" element={<Navigate to="/vacancies" replace />}/>
-            <Route path="/vacancies" element={<JobsPage />} />
-            <Route path="/vacancies/:id" element={<VacancyPage />}/>
         </Routes>
+
     );
 }
 

@@ -1,36 +1,34 @@
-import {Autocomplete, Button, Container, Divider, Grid, Group, Stack, Text, Title} from '@mantine/core';
+import { useEffect, useState } from 'react';
+import {
+    Autocomplete,
+    Button,
+    Container,
+    Divider,
+    Grid,
+    Group,
+    Stack,
+    Text,
+    Title,
+} from '@mantine/core';
+import { IconSearch } from '@tabler/icons-react';
+
+import { useJobsFilters } from '../../hooks/useJobsFilters';
 import { JobFilters } from '../../components/JobFilters/JobFilters';
 import { JobsList } from '../../components/JobsList/JobsList';
 
-import classes from './JobsPage.module.scss';
-
-import {useJobsFilters} from "@/hooks/useJobsFilters.ts";
-import {IconSearch} from "@tabler/icons-react";
-import {setSearch} from "@/store/jobs/jobsSlice.ts";
-import {useEffect, useMemo, useState} from "react";
-import {useDebouncedValue} from "@mantine/hooks";
-import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
+import classes from './JobsPage.module.css';
 
 export function JobsPage() {
-
-    const {filters, setSearch} = useJobsFilters();
-
-    console.log(filters);
+    const {
+        filters,
+        setSearch,
+    } = useJobsFilters();
 
     const [searchValue, setSearchValue] = useState(filters.search);
-
-    const {data} = useGetJobsQuery(filters);
-    const [debouncedSearch] = useDebouncedValue(searchValue, 500);
 
     useEffect(() => {
         setSearchValue(filters.search);
     }, [filters.search]);
-
-    // useEffect(() => {
-    //     if (debouncedSearch !== filters.search) {
-    //         setSearch(debouncedSearch);
-    //     }
-    // }, [debouncedSearch, filters.search, setSearch]);
 
     const handleSearch = () => {
         setSearch(searchValue);
@@ -41,39 +39,36 @@ export function JobsPage() {
         setSearch(value);
     };
 
-
-    const suggestions = useMemo(() => {
-        if (!data?.jobs || !debouncedSearch.trim()) {
-            return [];
-        }
-
-        return [
-            ...new Set(
-                data.jobs.flatMap((job) => [
-                    job.name,
-                    job.company_name,
-                ]),
-            ),
-        ];
-    }, [data?.jobs, debouncedSearch]);
-
-
     return (
         <Container size="md" className={classes.container}>
             <Stack gap="sm">
                 <Stack gap="md">
                     <div className={classes.wrapper}>
                         <Group justify="space-between">
-                            <Group gap="sm" wrap='wrap' align="start" className={classes.wraptitle}
-                                   style={{flexDirection: 'column'}}>
-                                <Title order={2} fw={700} className={classes.title}>
+                            <Group
+                                gap="sm"
+                                wrap="wrap"
+                                align="start"
+                                className={classes.wraptitle}
+                                style={{ flexDirection: 'column' }}
+                            >
+                                <Title
+                                    order={2}
+                                    fw={700}
+                                    className={classes.title}
+                                >
                                     Список вакансий
                                 </Title>
+
                                 <Text c="#0F0F1080">
                                     по профессии Frontend-разработчик
                                 </Text>
                             </Group>
-                            <Group align="flex-start" gap="8">
+
+                            <Group
+                                align="flex-start"
+                                gap="8"
+                            >
                                 <Autocomplete
                                     placeholder="Должность или название компании"
                                     leftSection={<IconSearch size={16} />}
@@ -82,19 +77,32 @@ export function JobsPage() {
                                     onChange={setSearchValue}
                                     onOptionSubmit={handleSearchOption}
                                 />
-                                <Button type="submit" onClick={handleSearch}>Найти</Button>
+
+                                <Button
+                                    type="button"
+                                    onClick={handleSearch}
+                                >
+                                    Найти
+                                </Button>
                             </Group>
                         </Group>
                     </div>
                 </Stack>
-                <Divider style={{marginLeft: 'calc(50% - 49vw)', marginRight: 'calc(50% - 49vw)'}}/>
+
+                <Divider
+                    style={{
+                        marginLeft: 'calc(50% - 49vw)',
+                        marginRight: 'calc(50% - 49vw)',
+                    }}
+                />
+
                 <Grid>
                     <Grid.Col span={4}>
-                        <JobFilters/>
+                        <JobFilters />
                     </Grid.Col>
 
                     <Grid.Col span={8}>
-                        <JobsList/>
+                        <JobsList />
                     </Grid.Col>
                 </Grid>
             </Stack>

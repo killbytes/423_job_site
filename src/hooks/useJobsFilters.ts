@@ -10,7 +10,7 @@ export function useJobsFilters() {
     const city          = searchParams.get('city') ?? '';
     const skillsParam   = searchParams.get('skills') ?? '';
 
-    const skills             = skillsParam ? skillsParam.split(',').filter((x) => Boolean(x)) : [];
+    const skills       = skillsParam ? skillsParam.split(',').filter((x) => Boolean(x)) : [];
 
     const pageParam = Number(searchParams.get('page'));
     const page      = pageParam > 0 ? pageParam : DEFAULT_PAGE;
