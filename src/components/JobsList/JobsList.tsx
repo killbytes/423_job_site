@@ -1,6 +1,6 @@
 import {Center, Loader, Pagination, Stack, Text} from '@mantine/core';
 import {useGetJobsQuery} from '../../store/jobs/jobsApi';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
+// import {useAppDispatch, useAppSelector} from '../../store/hooks';
 // import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
 // import {setPage} from '../../store/jobs/jobsSlice';
 import {JobCard} from '../JobCard/JobCard';

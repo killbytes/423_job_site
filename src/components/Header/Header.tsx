@@ -9,7 +9,7 @@ export function Header() {
         <header className={classes.header}>
             <Container size="lg" className={classes.inner}>
                 <Group justify="space-between" style={{width: '100%'}}>
-                    <Link to="/">
+                    <Link to="/" className={classes.link_logo}>
                         <Text className={classes.logo} fw={600}>
                             <img src={Logo} alt="Logo" className={classes.logoimg}/>
                             .FrontEnd

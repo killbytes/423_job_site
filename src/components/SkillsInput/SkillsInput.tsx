@@ -1,8 +1,8 @@
 import {ActionIcon, Group, Pill, Stack, Text, TextInput} from '@mantine/core';
 import {useState, type KeyboardEvent} from 'react';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {addSkill, removeSkill} from '../../store/jobs/jobsSlice';
-import {selectSkills} from '../../store/jobs/jobsSelectors';
+// import {useAppDispatch, useAppSelector} from '../../store/hooks';
+// import {addSkill, removeSkill} from '../../store/jobs/jobsSlice';
+// import {selectSkills} from '../../store/jobs/jobsSelectors';
 
 interface SkillsInputProps {
     skills: string[];

@@ -6,7 +6,7 @@ import classes from './JobsPage.module.scss';
 
 import {useJobsFilters} from "@/hooks/useJobsFilters.ts";
 import {IconSearch} from "@tabler/icons-react";
-import {setSearch} from "@/store/jobs/jobsSlice.ts";
+// import {setSearch} from "@/store/jobs/jobsSlice.ts";
 import {useEffect, useMemo, useState} from "react";
 import {useDebouncedValue} from "@mantine/hooks";
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";

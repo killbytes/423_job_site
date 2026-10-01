@@ -20,12 +20,13 @@ export interface JobsQueryParams {
     skills: string[];
 }
 
-// export interface JobsFiltersState {
-//     search: string;
-//     city: string;
-//     skills: string[];
-//     page: number;
-// }
+export interface JobsFiltersState {
+    search: string;
+    city: string;
+    skills: string[];
+    page: number;
+}
+
 export interface JobsFilters {
     search: string;
     city: string;

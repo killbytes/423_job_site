@@ -39,5 +39,5 @@ const jobsSlice = createSlice({
     },
 });
 
-export const {setSearch, setCity, addSkill, removeSkill, setPage} = jobsSlice.actions;
+// export const {setSearch, setCity, addSkill, removeSkill, setPage} = jobsSlice.actions;
 export default jobsSlice.reducer;

@@ -1,15 +1,15 @@
-import {Container, Grid, Stack, Title, Divider, Group, Text, Autocomplete, Button} from '@mantine/core';
-import {Header} from './components/Header/Header';
-import {JobFilters} from './components/JobFilters/JobFilters';
-import {JobsList} from './components/JobsList/JobsList';
-import classes from './App.module.scss';
-import {useMemo, useState} from "react";
-import {useDebouncedValue} from "@mantine/hooks";
-import {setSearch} from "@/store/jobs/jobsSlice.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {selectJobsFilters, selectSearch} from "@/store/jobs/jobsSelectors.ts";
-import {IconSearch} from "@tabler/icons-react";
-import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
+// import {Container, Grid, Stack, Title, Divider, Group, Text, Autocomplete, Button} from '@mantine/core';
+// import {Header} from './components/Header/Header';
+// import {JobFilters} from './components/JobFilters/JobFilters';
+// import {JobsList} from './components/JobsList/JobsList';
+// import classes from './App.module.scss';
+// import {useMemo, useState} from "react";
+// import {useDebouncedValue} from "@mantine/hooks";
+// import {setSearch} from "@/store/jobs/jobsSlice.ts";
+// import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
+// import {selectJobsFilters, selectSearch} from "@/store/jobs/jobsSelectors.ts";
+// import {IconSearch} from "@tabler/icons-react";
+// import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 
 import { Navigate, Route, Routes } from 'react-router';
 import { JobsPage } from './pages/JobsPage/JobsPage';
