@@ -27,7 +27,6 @@ export function JobsPage() {
         setSearch(value);
     };
 
-
     const suggestions = useMemo(() => {
         if (!data?.jobs || !debouncedSearch.trim()) {
             return [];
