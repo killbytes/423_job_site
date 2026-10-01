@@ -19,18 +19,22 @@ export function JobFilters() {
 
 
     const {filters, setCity, setSkills,} = useJobsFilters();
-    const {data} = useGetJobsQuery(filters);
+    // const {data} = useGetJobsQuery(filters);
 
-
-
+    const { data: citiesData } = useGetJobsQuery({
+        page: 1,
+        search: '',
+        city: '',
+        skills: [],
+    });
 
     const cities = useMemo(() => {
-        if (!data?.jobs) {
+        if (!citiesData?.jobs) {
             return [];
         }
-        return [...new Set(data.jobs.map((job) => job.city))]
+        return [...new Set(citiesData.jobs.map((job) => job.city))]
             .sort((a, b) => a.localeCompare(b, 'ru'));
-    }, [data?.jobs]);
+    }, [citiesData?.jobs]);
 
     const cityOptions = [
         {value: '', label: 'Все города'},
@@ -60,7 +64,6 @@ export function JobFilters() {
                 <Select
                     leftSection={<IconMapPin size={16} />}
                     placeholder="Все города"
-                    // data={cityOptions}
                     data={cityOptions}
                     value={filters.city || null}
                     onChange={(value) => setCity(value ?? '')}
