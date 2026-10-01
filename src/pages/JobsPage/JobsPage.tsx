@@ -15,7 +15,7 @@ export function JobsPage() {
 
     const {filters, setSearch} = useJobsFilters();
 
-    console.log(filters);
+    // console.log(filters);
 
     const [searchValue, setSearchValue] = useState(filters.search);
 

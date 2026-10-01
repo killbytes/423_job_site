@@ -1,4 +1,5 @@
 import {Anchor, Container, Group, Indicator, Text} from '@mantine/core';
+import { Link } from 'react-router';
 import classes from './Header.module.scss';
 import Logo from '@/shared/assets/logo.png';
 import User from '@/shared/assets/user.png';
@@ -8,10 +9,12 @@ export function Header() {
         <header className={classes.header}>
             <Container size="lg" className={classes.inner}>
                 <Group justify="space-between" style={{width: '100%'}}>
-                    <Text className={classes.logo} fw={600}>
-                        <img src={Logo} alt="Logo" className={classes.logoimg}/>
-                        .FrontEnd
-                    </Text>
+                    <Link to="/">
+                        <Text className={classes.logo} fw={600}>
+                            <img src={Logo} alt="Logo" className={classes.logoimg}/>
+                            .FrontEnd
+                        </Text>
+                    </Link>
                     <Group justify="space-between">
                         <Anchor href="#" c="#000000" fw={700} underline="never" className={classes.link}>
                             Вакансии FE

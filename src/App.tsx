@@ -111,9 +111,7 @@ function App() {
                 <Route path="/vacancies" element={<JobsPage />} />
                 <Route path="/vacancies/:id" element={<VacancyPage />} />
             </Route>
-
             <Route path="/" element={<Navigate to="/vacancies" replace />}/>
-
             <Route path="*" element={<Navigate to="/vacancies" replace />}/>
         </Routes>
 
