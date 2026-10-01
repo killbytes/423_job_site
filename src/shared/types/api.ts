@@ -14,3 +14,8 @@ export interface JobsResponse {
     pagination: JobsPagination;
     jobs: Job[];
 }
+
+export interface JobResponse {
+    success: boolean;
+    job: Job;
+}

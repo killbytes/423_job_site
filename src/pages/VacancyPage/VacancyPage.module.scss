@@ -1,0 +1,46 @@
+.vacancy-container {
+  width: 100%;
+  max-width: 692px;
+  margin: 22px auto 0;
+  padding: 0 16px 40px;
+}
+
+.vacancy-card {
+  background: #fff;
+}
+
+.vacancy-title {
+  color: #3659e3;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 576px) {
+  .header {
+    height: auto;
+    min-height: 60px;
+  }
+
+  .vacancy-container {
+    margin-top: 16px;
+    padding-inline: 12px;
+  }
+
+  .vacancy-card {
+    padding: 18px !important;
+  }
+
+  .vacancy-title {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
