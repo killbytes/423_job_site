@@ -1,26 +1,13 @@
 import {Select, Stack} from '@mantine/core';
 import {useMemo} from 'react';
-// import {useAppDispatch, useAppSelector} from '../../store/hooks';
-// import {selectCity} from '../../store/jobs/jobsSelectors';
-// import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
-// import {setCity} from '../../store/jobs/jobsSlice';
 import {SkillsInput} from '../SkillsInput/SkillsInput';
 import classes from './JobFilters.module.scss';
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 import {IconMapPin} from "@tabler/icons-react";
-
 import { useJobsFilters } from '../../hooks/useJobsFilters';
 
-
 export function JobFilters() {
-    // const dispatch = useAppDispatch();
-    // const filters = useAppSelector(selectJobsFilters);
-    // const city = useAppSelector(selectCity);
-
-
     const {filters, setCity, setSkills,} = useJobsFilters();
-    // const {data} = useGetJobsQuery(filters);
-
     const { data: citiesData } = useGetJobsQuery({
         page: 1,
         search: '',

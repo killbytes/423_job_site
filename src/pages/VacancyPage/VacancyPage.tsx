@@ -22,13 +22,6 @@ const formatSpace = (space: 'office' | 'remote' | 'hybrid') => {
     return labels[space];
 };
 
-const formatSkills = (skills: string) => {
-    return skills
-        .split(',')
-        .map((skill) => skill.trim())
-        .filter(Boolean);
-};
-
 export function VacancyPage() {
     const { id } = useParams<{ id: string }>();
     const jobId = Number(id);
@@ -53,43 +46,8 @@ export function VacancyPage() {
     }
 
     const { job } = data;
-    const skills = formatSkills(job.skills);
 
     return (
-        // <Paper>
-        //     <Stack>
-        //         <Title order={1}>
-        //             {job.name}
-        //         </Title>
-        //
-        //         <Text fw={500}>
-        //             {job.company_name}
-        //         </Text>
-        //
-        //         <Group gap="xs">
-        //             <Text>{job.city}</Text>
-        //             <Text>·</Text>
-        //             <Text>{formatSpace(job.space)}</Text>
-        //         </Group>
-        //
-        //         <Text size="xl" fw={600}>
-        //             {formatSalary(job.salary)}
-        //         </Text>
-        //
-        //         <Group gap="xs">
-        //             {skills.map((skill) => (
-        //                 <Badge key={skill} variant="light">
-        //                     {skill}
-        //                 </Badge>
-        //             ))}
-        //         </Group>
-        //
-        //         <Text>
-        //             Опыт: {job.experience}
-        //         </Text>
-        //     </Stack>
-        // </Paper>
-
         <Container size="md" className="vacancy-container" mt={24}>
             <Stack gap={24}>
                 <Paper radius="xl" p={24} className="vacancy-card">
@@ -97,7 +55,6 @@ export function VacancyPage() {
                         <Title order={3} className="vacancy-title">
                             {job.name}
                         </Title>
-
                         <Group gap={18}>
                             <Text size="sm" fw={500}>
                                 {formatSalary(job.salary)}
@@ -128,8 +85,6 @@ export function VacancyPage() {
                         </Stack>
                     </Stack>
                 </Paper>
-
-                {/* Description */}
                 <Paper radius="xl" p={24} className="vacancy-card">
                     <Stack gap={12}>
                         <Title order={4} ta="left">

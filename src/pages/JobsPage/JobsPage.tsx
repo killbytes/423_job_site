@@ -1,24 +1,16 @@
 import {Autocomplete, Button, Container, Divider, Grid, Group, Stack, Text, Title} from '@mantine/core';
 import { JobFilters } from '../../components/JobFilters/JobFilters';
 import { JobsList } from '../../components/JobsList/JobsList';
-
 import classes from './JobsPage.module.scss';
-
 import {useJobsFilters} from "@/hooks/useJobsFilters.ts";
 import {IconSearch} from "@tabler/icons-react";
-// import {setSearch} from "@/store/jobs/jobsSlice.ts";
 import {useEffect, useMemo, useState} from "react";
 import {useDebouncedValue} from "@mantine/hooks";
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 
 export function JobsPage() {
-
     const {filters, setSearch} = useJobsFilters();
-
-    // console.log(filters);
-
     const [searchValue, setSearchValue] = useState(filters.search);
-
     const {data} = useGetJobsQuery(filters);
     const [debouncedSearch] = useDebouncedValue(searchValue, 500);
 
