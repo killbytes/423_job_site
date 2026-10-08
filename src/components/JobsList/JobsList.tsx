@@ -1,14 +1,11 @@
 import {Center, Loader, Pagination, Stack, Text} from '@mantine/core';
 import {useGetJobsQuery} from '../../store/jobs/jobsApi';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {selectJobsFilters} from '../../store/jobs/jobsSelectors';
-import {setPage} from '../../store/jobs/jobsSlice';
 import {JobCard} from '../JobCard/JobCard';
 import classes from './JobsList.module.scss';
+import {useJobsFilters} from '../../hooks/useJobsFilters';
 
 export function JobsList() {
-    const dispatch = useAppDispatch();
-    const filters = useAppSelector(selectJobsFilters);
+    const {filters, setPage} = useJobsFilters();
     const {data, isLoading, isError} = useGetJobsQuery(filters);
 
     if (isLoading) {
@@ -42,12 +39,11 @@ export function JobsList() {
                     <JobCard key={job.id} job={job}/>
                 ))}
             </Stack>
-
             <Center>
                 <Pagination
                     value={filters.page}
                     total={data.pagination.totalPages}
-                    onChange={(page) => dispatch(setPage(page))}
+                    onChange={(page) => setPage(page)}
                 />
             </Center>
         </Stack>

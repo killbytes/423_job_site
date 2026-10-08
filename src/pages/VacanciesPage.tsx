@@ -5,23 +5,26 @@ import {JobsList} from '../components/JobsList/JobsList';
 import classes from '../App.module.scss';
 import {useMemo, useState} from "react";
 import {useDebouncedValue} from "@mantine/hooks";
-import {setSearch} from "@/store/jobs/jobsSlice.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {selectJobsFilters, selectSearch} from "@/store/jobs/jobsSelectors.ts";
 import {IconSearch} from "@tabler/icons-react";
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
+import {useJobsFilters} from '../hooks/useJobsFilters';
 
 function VacanciesPage() {
-    const dispatch = useAppDispatch();
-    const search = useAppSelector(selectSearch);
-    const [searchValue, setSearchValue] = useState(search);
+    const {filters, setSearch} = useJobsFilters();
+    const [searchValue, setSearchValue] = useState(filters.search);
+    const [prevSearch, setPrevSearch] = useState(filters.search);
+
+    if (prevSearch !== filters.search) {
+        setPrevSearch(filters.search);
+        setSearchValue(filters.search);
+    }
+
     const [debouncedSearch] = useDebouncedValue(searchValue, 400);
-    const filters = useAppSelector(selectJobsFilters);
     const {data} = useGetJobsQuery(filters);
     const jobs = data?.jobs;
 
     const handleSearch = () => {
-        dispatch(setSearch(searchValue.trim()));
+        setSearch(searchValue.trim());
     };
 
     const suggestions = useMemo(() => {
@@ -67,7 +70,7 @@ function VacanciesPage() {
                                             onChange={setSearchValue}
                                             onOptionSubmit={(value) => {
                                                 setSearchValue(value);
-                                                dispatch(setSearch(value.trim()));
+                                                setSearch(value.trim());
                                             }}
                                         />
                                         <Button type="submit" onClick={handleSearch}>Найти</Button>

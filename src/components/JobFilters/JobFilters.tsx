@@ -1,19 +1,16 @@
 import {Select, Stack} from '@mantine/core';
 import {useMemo} from 'react';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {selectCity, selectJobsFilters} from '../../store/jobs/jobsSelectors';
-import {setCity} from '../../store/jobs/jobsSlice';
 import {SkillsInput} from '../SkillsInput/SkillsInput';
 import classes from './JobFilters.module.scss';
 import {useGetJobsQuery} from "@/store/jobs/jobsApi.ts";
 import {IconMapPin} from "@tabler/icons-react";
+import {useJobsFilters} from '../../hooks/useJobsFilters';
 
 export function JobFilters() {
-    const dispatch = useAppDispatch();
-    const filters = useAppSelector(selectJobsFilters);
+    const {filters, setCity} = useJobsFilters();
     const {data} = useGetJobsQuery(filters);
     const jobs = data?.jobs;
-    const city = useAppSelector(selectCity);
+    const city = filters.city;
 
     const cities = useMemo(() => {
         if (!jobs) {
@@ -50,7 +47,7 @@ export function JobFilters() {
                     placeholder="Все города"
                     data={cityOptions}
                     value={city || 'all'}
-                    onChange={(value) => dispatch(setCity(value === 'all' ? '' : value ?? ''))}
+                    onChange={(value) => setCity(value === 'all' ? '' : value ?? '')}
                     allowDeselect={false}
                 />
             </Stack>

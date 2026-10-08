@@ -1,19 +1,16 @@
 import {ActionIcon, Group, Pill, Stack, Text, TextInput} from '@mantine/core';
 import {useState, type KeyboardEvent} from 'react';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {addSkill, removeSkill} from '../../store/jobs/jobsSlice';
-import {selectSkills} from '../../store/jobs/jobsSelectors';
+import {useJobsFilters} from '../../hooks/useJobsFilters';
 
 export function SkillsInput() {
-    const dispatch = useAppDispatch();
-    const skills = useAppSelector(selectSkills);
+    const {filters, addSkill, removeSkill} = useJobsFilters();
+    const skills = filters.skills;
     const [value, setValue] = useState('');
 
     const handleAdd = () => {
         const skill = value.trim();
         if (!skill) return;
-
-        dispatch(addSkill(skill));
+        addSkill(skill);
         setValue('');
     };
 
@@ -25,7 +22,6 @@ export function SkillsInput() {
     };
 
     return (
-
         <Stack gap={8}>
             <Text size="sm" fw={600} ta={"left"}>
                 Ключевые навыки
@@ -39,7 +35,6 @@ export function SkillsInput() {
                     size="xs"
                     style={{width: '100%'}}
                 />
-
                 <ActionIcon
                     type="button"
                     variant="light"
@@ -56,7 +51,7 @@ export function SkillsInput() {
                     <Pill
                         key={skill}
                         withRemoveButton
-                        onRemove={() => dispatch(removeSkill(skill))}
+                        onRemove={() => removeSkill(skill)}
                     >
                         {skill}
                     </Pill>
