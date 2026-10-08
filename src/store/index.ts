@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import jobsReducer from './jobs/jobsSlice';
 import { jobsApi } from './jobs/jobsApi';
 
 export const store = configureStore({
     reducer: {
-        jobs: jobsReducer,
         [jobsApi.reducerPath]: jobsApi.reducer,
     },
 

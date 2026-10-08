@@ -19,10 +19,3 @@ export interface JobsQueryParams {
     city: string;
     skills: string[];
 }
-
-export interface JobsFiltersState {
-    search: string;
-    city: string;
-    skills: string[];
-    page: number;
-}
