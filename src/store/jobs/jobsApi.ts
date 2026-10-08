@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { JobsResponse } from '../../shared/types/api';
+import type { JobsResponse, JobResponse } from '../../shared/types/api';
 import type { JobsQueryParams } from '../../shared/types/jobs.types';
 
 export const jobsApi = createApi({
@@ -19,7 +19,10 @@ export const jobsApi = createApi({
                 },
             }),
         }),
+        getJobById: builder.query<JobResponse, number>({
+            query: (id) => `jobs/${id}`,
+        }),
     }),
 });
 
-export const { useGetJobsQuery } = jobsApi;
+export const { useGetJobsQuery, useGetJobByIdQuery } = jobsApi;

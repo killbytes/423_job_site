@@ -11,6 +11,8 @@ export interface Job {
     space: JobSpace;
     skills: string;
     experience: string;
+    description: string;
+    about_company: string;
 }
 
 export interface JobsQueryParams {
