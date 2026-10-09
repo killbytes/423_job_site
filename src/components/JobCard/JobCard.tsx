@@ -1,4 +1,5 @@
 import {Badge, Button, Group, Paper, Stack, Text, Title} from '@mantine/core';
+import {Link} from 'react-router';
 import type {Job} from '../../shared/types';
 import classes from './JobCard.module.scss';
 
@@ -37,9 +38,11 @@ export function JobCard({job}: JobCardProps) {
 
                 <Text ta="left" size="sm">{job.city}</Text>
 
-                <Button color="#0F0F10" size="sm" w="fit-content" mt="xs">
-                    Смотреть вакансию
-                </Button>
+                <Link to={`/vacancies/${job.id}`} style={{textDecoration: 'none'}}>
+                    <Button color="#0F0F10" size="sm" w="fit-content" mt="xs">
+                        Смотреть вакансию
+                    </Button>
+                </Link>
             </Stack>
         </Paper>
     );
