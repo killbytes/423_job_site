@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <Provider store={store}>
             <MantineProvider>
-                <BrowserRouter>
+                <BrowserRouter basename="/423_job_site/">
                     <App />
                 </BrowserRouter>
             </MantineProvider>
