@@ -18,6 +18,12 @@ export function JobsPage() {
         setSearchValue(filters.search);
     }, [filters.search]);
 
+    // useEffect(() => {
+    //     if (debouncedSearch !== filters.search) {
+    //         setSearch(debouncedSearch);
+    //     }
+    // }, [debouncedSearch, filters.search, setSearch]);
+
     const handleSearch = () => {
         setSearch(searchValue);
     };
